@@ -1,0 +1,4 @@
+timgs/settings/mongodb_credentials.py
+timgs/settings/twitter_credentials.py
+
+*.pyc
