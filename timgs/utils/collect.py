@@ -48,8 +48,8 @@ def collect_tweets():
             time.sleep(60)
 
 
-def update_summary(filepath=''):
-    with open(filepath, 'w') as f:
+def update_summary():
+    with open('../data/summary_ten2ten_min.csv', 'w') as ten2ten_f, open('../data/summary_hits.csv', 'w') as hits_f:
         dbconn = pymongo.Connection(mongodb_credentials.HOST, mongodb_credentials.PORT)
         dbcollection = dbconn['ia896']['raw_tweets']
 
@@ -57,6 +57,7 @@ def update_summary(filepath=''):
         total = dbcollection.count()
         count = 0
         freq = {}
+        hits = {}
         for tweet in dbcollection.find():
             tenmin_id = int(tweet['timestamp_ms']) / 600000
             if not tenmin_id in freq:
@@ -64,18 +65,42 @@ def update_summary(filepath=''):
             freq[tenmin_id] += 1
             count += 1
 
+            if not tweet['entities']['media'][0]['media_url'] in hits:
+                hits[tweet['entities']['media'][0]['media_url']] = 0
+            hits[tweet['entities']['media'][0]['media_url']] += 1
+
             if count % 10000 == 0:
                 logging.info('%s%%', float(100*count) / total)
 
         ret = []
         for key, value in freq.iteritems():
-            ret.append({
-                'id': key,
-                'count': value,
-                'time': datetime.datetime.fromtimestamp(600*key).strftime('%Y-%m-%d %H:%M:%S'),
-            })
-        ret = sorted(ret, key=lambda k:k['id'])
+            ret.append((
+                key,
+                value,
+                datetime.datetime.fromtimestamp(600*key).strftime('%Y-%m-%d %H:%M:%S'),
+            ))
+        ret = sorted(ret, key=lambda tup:tup[0])
 
-        import pickle
-        pickle.dump(ret, f)
-        logging.info('Summary complete; see %s', filepath)
+        hits_summ = {}
+        for key, val in hits.iteritems():
+            if not val in hits_summ:
+                hits_summ[val] = {'count': 0, 'url': key}
+            hits_summ[val]['count'] += 1
+
+        ret_hits = []
+        for key, value in hits_summ.iteritems():
+            ret_hits.append((
+                key,
+                value['count'],
+                value['url'] if value['count'] == 1 else '',
+            ))
+        ret_hits = sorted(ret_hits, key=lambda tup:tup[0])
+
+        import csv
+        csvwriter = csv.writer(ten2ten_f, delimiter=';')
+        csvwriter.writerows(ret)
+        csvwriter_hits = csv.writer(hits_f, delimiter=';')
+        csvwriter_hits.writerows(ret_hits)
+        ten2ten_f.close()
+        hits_f.close()
+        logging.info('Summary complete')

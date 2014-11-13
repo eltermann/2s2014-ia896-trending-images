@@ -1,4 +1,7 @@
 timgs/settings/mongodb_credentials.py
 timgs/settings/twitter_credentials.py
 
+data
+sync_data.sh
+
 *.pyc
