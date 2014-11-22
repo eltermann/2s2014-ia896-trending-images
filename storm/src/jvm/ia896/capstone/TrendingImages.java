@@ -25,6 +25,7 @@ import backtype.storm.LocalCluster;
 import backtype.storm.topology.TopologyBuilder;
 import backtype.storm.utils.Utils;
 
+import ia896.capstone.bolt.ImageTweetFilterBolt;
 import ia896.capstone.bolt.PrinterBolt;
 import ia896.capstone.spout.TwitterSampleSpout;
 
@@ -39,20 +40,29 @@ public class TrendingImages {
         
         TopologyBuilder builder = new TopologyBuilder();
         
+        // 1- spout
         builder.setSpout("twitter", new TwitterSampleSpout(consumerKey, consumerSecret,
                                 accessToken, accessTokenSecret, keyWords));
-        builder.setBolt("print", new PrinterBolt())
+
+        // 2- spout -> images filter
+        builder.setBolt("img-filter", new ImageTweetFilterBolt())
                 .shuffleGrouping("twitter");
+
+
+        // TODO - testing
+        builder.setBolt("print", new PrinterBolt())
+                .shuffleGrouping("img-filter");
                 
                 
         Config conf = new Config();
+        //conf.setDebug(true);
         
         
         LocalCluster cluster = new LocalCluster();
         
         cluster.submitTopology("ia896-topology", conf, builder.createTopology());
         
-        Utils.sleep(10000);
+        Utils.sleep(99999999);
         cluster.shutdown();
     }
 }
