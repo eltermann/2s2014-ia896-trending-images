@@ -13,6 +13,7 @@ import backtype.storm.tuple.Fields;
 import backtype.storm.tuple.Tuple;
 import backtype.storm.tuple.Values;
 
+import java.util.Date;
 import java.util.Map;
 import java.util.ArrayList; 
 import java.util.HashMap; 
@@ -33,16 +34,16 @@ import java.util.HashMap;
  */
 public class RecurringImageFilterBolt extends BaseRichBolt {
   OutputCollector _collector;
-  HashMap<String, ArrayList<Integer>> history;
+  HashMap<String, ArrayList<Long>> history;
   int count;
 
-  final int RECURRING_WINDOW = 600000; // 10 minutes (in milliseconds)
+  final int RECURRING_WINDOW = 600000; // 10 minutes (in seconds)
   final int RECURRING_THRESHOLD = 2; // how many times the URL must reccur in `window` timeframe
 
   @Override
   public void prepare(Map conf, TopologyContext context, OutputCollector collector) {
     _collector = collector;
-    history = new HashMap<String, ArrayList<Integer>>();
+    history = new HashMap<String, ArrayList<Long>>();
     count = 0;
   }
 
@@ -53,15 +54,34 @@ public class RecurringImageFilterBolt extends BaseRichBolt {
       // Clean expired occurrences
       // TODO
 
-
       count = 0; // avoid overflow
     }
 
     String url = tuple.getString(0);
+    Long timestamp = (Long) tuple.getValue(1);
 
     // Update history
-    ArrayList<Integer> occurrences = history.get(url);
-    // TODO
+    ArrayList<Long> occurrences;
+    occurrences = history.get(url);
+    if (occurrences == null) {
+      occurrences = new ArrayList<Long>();
+    }
+    occurrences.add(timestamp);
+    history.put(url, occurrences);
+
+    // Check if URL is recurrent
+    int recurring_count = 0;
+    Long now = System.currentTimeMillis() / 1000;
+    for (Long occurrence : occurrences) {
+      if (now - occurrence < RECURRING_WINDOW) {
+        recurring_count++;
+      }
+    }
+
+    if (recurring_count >= RECURRING_THRESHOLD) {
+      _collector.emit(tuple, new Values(url, timestamp));
+      _collector.ack(tuple);
+    }
   }
 
   @Override
