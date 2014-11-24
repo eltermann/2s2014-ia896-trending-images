@@ -23,11 +23,15 @@ import java.util.Arrays;
 import backtype.storm.Config;
 import backtype.storm.LocalCluster;
 import backtype.storm.topology.TopologyBuilder;
+import backtype.storm.tuple.Fields;
 import backtype.storm.utils.Utils;
 
-import ia896.capstone.bolt.ImageTweetFilterBolt;
+import ia896.capstone.bolt.DownloaderBolt;
+//import ia896.capstone.bolt.RecurringTweetFilterBolt;
+import ia896.capstone.bolt.ImageFilterBolt;
 import ia896.capstone.bolt.PrinterBolt;
 import ia896.capstone.spout.TwitterSampleSpout;
+
 
 public class TrendingImages {
     public static void main(String[] args) {
@@ -45,15 +49,21 @@ public class TrendingImages {
                                 accessToken, accessTokenSecret, keyWords));
 
         // 2- spout -> images filter
-        builder.setBolt("img-filter", new ImageTweetFilterBolt())
+        builder.setBolt("img-filter", new ImageFilterBolt())
                 .shuffleGrouping("twitter");
-
 
         // TODO - testing
         builder.setBolt("print", new PrinterBolt())
                 .shuffleGrouping("img-filter");
-                
-                
+
+        // 3- images filter -> recurrent images filter
+        //builder.setBolt("recurrent-img-filter", new RecurringImageFilterBolt())
+        //        .fieldsGrouping("img-filter", new Fields("url"));
+
+        // 4- recurrent images filter -> downloader
+        //builder.setBolt("downloader", new DownloaderBolt())
+        //        .fieldsGrouping("recurrent-img-filter", new Fields("url"));
+
         Config conf = new Config();
         //conf.setDebug(true);
         
