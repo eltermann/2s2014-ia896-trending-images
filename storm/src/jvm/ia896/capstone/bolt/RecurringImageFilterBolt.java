@@ -1,9 +1,6 @@
 package ia896.capstone.bolt;
 
-import twitter4j.MediaEntity;
 import twitter4j.Status;
-import twitter4j.TwitterException;
-import twitter4j.json.DataObjectFactory;
 
 import backtype.storm.task.OutputCollector;
 import backtype.storm.task.TopologyContext;
@@ -59,6 +56,7 @@ public class RecurringImageFilterBolt extends BaseRichBolt {
 
     String url = tuple.getString(0);
     Long timestamp = (Long) tuple.getValue(1);
+    Status status = (Status) tuple.getValue(2);
 
     // Update history
     ArrayList<Long> occurrences;
@@ -79,13 +77,13 @@ public class RecurringImageFilterBolt extends BaseRichBolt {
     }
 
     if (recurring_count >= RECURRING_THRESHOLD) {
-      _collector.emit(tuple, new Values(url, timestamp));
+      _collector.emit(tuple, new Values(url, timestamp, status));
       _collector.ack(tuple);
     }
   }
 
   @Override
   public void declareOutputFields(OutputFieldsDeclarer ofd) {
-    ofd.declare(new Fields("url"));
+    ofd.declare(new Fields("url", "timestamp", "status"));
   }
 }

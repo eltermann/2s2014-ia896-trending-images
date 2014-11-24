@@ -33,7 +33,7 @@ public class ImageFilterBolt extends BaseRichBolt {
     Status status = (Status) tuple.getValue(0);
     for (MediaEntity mediaEntity : status.getMediaEntities()) {
       if (mediaEntity.getType().equals("photo")) {
-        _collector.emit(tuple, new Values(mediaEntity.getMediaURL(), status.getCreatedAt().getTime()));
+        _collector.emit(tuple, new Values(mediaEntity.getMediaURL(), status.getCreatedAt().getTime(), status));
         _collector.ack(tuple);
       }
     }
@@ -41,6 +41,6 @@ public class ImageFilterBolt extends BaseRichBolt {
 
   @Override
   public void declareOutputFields(OutputFieldsDeclarer ofd) {
-    ofd.declare(new Fields("url", "timestamp"));
+    ofd.declare(new Fields("url", "timestamp", "status"));
   }
 }
