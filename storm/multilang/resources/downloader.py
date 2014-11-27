@@ -9,28 +9,39 @@ DOWNLOAD_TRIES = 5
 class DownloaderBolt(storm.BasicBolt):
     def process(self, tup):
         url = tup.values[0]
+        timestamp = tup.values[1]
         conn = pymongo.Connection('localhost', 27017)
-        collection = conn['ia896']['twitter_images']
+        images_collection = conn['ia896']['twitter_images']
 
-        if collection.find_one(url):
-            storm.logInfo('downloader hit')
-            storm.emit(tup.values)
+        # check if image is downloaded; if not, download it
+        image = images_collection.find_one(url)
+        if image:
+            # image already downloaded; update its record
+            image['last_occurrence'] = timestamp
+
+            if 'occurrences' in image and isinstance(image['occurrences'], list):
+                image['occurrences'].append(timestamp)
+            else:
+                image['occurrences'] = [timestamp]
+
+            images_collection.update({'_id': image['_id']}, image)
+            storm.emit([url, timestamp])
             return
         else:
-            storm.logInfo('downloader miss...')
             # try N times to download the image
             tries = 0
             while tries < DOWNLOAD_TRIES:
                 tries += 1
                 response = requests.get(url)
-                storm.logInfo('downloading...')
                 if response.status_code == 200:
-                    doc = {
+                    image = {
                         '_id': url,
                         'content': Binary(response.content),
+                        'last_occurrence': timestamp,
+                        'occurrences': [timestamp],
                     }
-                    collection.insert(doc)
-                    storm.emit(tup.values)
+                    images_collection.insert(image)
+                    storm.emit([url, timestamp])
                     return
 
 
