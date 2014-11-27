@@ -61,17 +61,16 @@ public class TrendingImages {
                 .shuffleGrouping("recurrent-img-filter");
 
         // 4- recurrent images filter -> downloader
-        //builder.setBolt("downloader", new DownloaderBolt())
-        //        .fieldsGrouping("recurrent-img-filter", new Fields("url"));
+        builder.setBolt("downloader", new DownloaderBolt())
+                .shuffleGrouping("recurrent-img-filter");
 
         Config conf = new Config();
         //conf.setDebug(true);
-        
-        
+
         LocalCluster cluster = new LocalCluster();
-        
+
         cluster.submitTopology("ia896-topology", conf, builder.createTopology());
-        
+
         Utils.sleep(99999999);
         cluster.shutdown();
     }

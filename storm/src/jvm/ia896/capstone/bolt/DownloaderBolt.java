@@ -2,8 +2,10 @@ package ia896.capstone.bolt;
 
 import backtype.storm.task.OutputCollector;
 import backtype.storm.task.TopologyContext;
+import backtype.storm.task.ShellBolt;
 import backtype.storm.topology.OutputFieldsDeclarer;
 import backtype.storm.topology.base.BaseRichBolt;
+import backtype.storm.topology.IRichBolt;
 import backtype.storm.tuple.Fields;
 import backtype.storm.tuple.Tuple;
 import backtype.storm.tuple.Values;
@@ -12,26 +14,21 @@ import java.util.Map;
 
 
 /**
- * For each tweet, determines whether it contains an image.
- * If so, emits its URL.
+ * Check if image is already downloaded. If not, download it.
  */
-public class DownloaderBolt extends BaseRichBolt {
-  OutputCollector _collector;
+public class DownloaderBolt extends ShellBolt implements IRichBolt {
 
-  @Override
-  public void prepare(Map conf, TopologyContext context, OutputCollector collector) {
-    _collector = collector;
-  }
-
-  @Override
-  public void execute(Tuple tuple) {
-    //String url = tuple.getString(0)
-    // TODO - check and download
+  public DownloaderBolt() {
+    super("python", "downloader.py");
   }
 
   @Override
   public void declareOutputFields(OutputFieldsDeclarer ofd) {
-    //ofd.declare(new Fields("url"));
-    // TODO
+    ofd.declare(new Fields("url", "timestamp"));
+  }
+
+  @Override
+  public Map<String, Object> getComponentConfiguration() {
+    return null;
   }
 }

@@ -56,7 +56,6 @@ public class RecurringImageFilterBolt extends BaseRichBolt {
 
     String url = tuple.getString(0);
     Long timestamp = (Long) tuple.getValue(1);
-    Status status = (Status) tuple.getValue(2);
 
     // Update history
     ArrayList<Long> occurrences;
@@ -77,13 +76,13 @@ public class RecurringImageFilterBolt extends BaseRichBolt {
     }
 
     if (recurring_count >= RECURRING_THRESHOLD) {
-      _collector.emit(tuple, new Values(url, timestamp, status));
+      _collector.emit(tuple, new Values(url, timestamp));
       _collector.ack(tuple);
     }
   }
 
   @Override
   public void declareOutputFields(OutputFieldsDeclarer ofd) {
-    ofd.declare(new Fields("url", "timestamp", "status"));
+    ofd.declare(new Fields("url", "timestamp"));
   }
 }
