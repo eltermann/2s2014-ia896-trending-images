@@ -1,15 +1,39 @@
 from bson.binary import Binary
+import cv2
 import gridfs
+import numpy as np
 import pymongo
 import requests
 import storm
 
+
 DOWNLOAD_TRIES = 5
+DISPLAY_IMAGES = False # change to True to allow cv2.imshow() display images
+
+
+def display_image(content):
+    display_image.counter = display_image.counter+1 if hasattr(display_image, 'counter') else 0
+
+    def load_img(content, dtype):
+        try:
+            img = cv2.imdecode(np.fromstring(content, dtype=dtype, sep=""), cv2.CV_LOAD_IMAGE_COLOR)
+        except:
+            return None
+        return img
+
+    for dtype in ['int16', 'int8']:
+        img = load_img(content, dtype)
+        if not img is None:
+            cv2.imshow(str(display_image.counter), img)
+            cv2.waitKey(0)
+            break
+
 
 class DownloaderBolt(storm.BasicBolt):
     def process(self, tup):
         url = tup.values[0]
         timestamp = tup.values[1]
+
         conn = pymongo.Connection('localhost', 27017)
         images_collection = conn['ia896']['twitter_images']
 
@@ -25,6 +49,8 @@ class DownloaderBolt(storm.BasicBolt):
                 image['occurrences'] = [timestamp]
 
             images_collection.update({'_id': image['_id']}, image)
+            if DISPLAY_IMAGES:
+                display_image(image['content'])
             storm.emit([url, timestamp])
             return
         else:
@@ -41,6 +67,8 @@ class DownloaderBolt(storm.BasicBolt):
                         'occurrences': [timestamp],
                     }
                     images_collection.insert(image)
+                    if DISPLAY_IMAGES:
+                        display_image(image['content'])
                     storm.emit([url, timestamp])
                     return
 
