@@ -1,4 +1,4 @@
-package br.unicamp.ia896.tweetow;
+package br.unicamp.ia896.tweetow.phash;
 
 import java.awt.Graphics2D;
 import java.awt.color.ColorSpace;
