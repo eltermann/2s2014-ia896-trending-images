@@ -38,6 +38,11 @@ algorithms are being tested to accomplish this task over millions of images.
   5. allow the user to query the system for the last trending images. The
      result must include duplicates and near duplicate images;
 
+# Setup and Access
+  ----------------
 
+  Amazon Server Address: (use the credentials provided by prof. Eduardo) 
+  https://856197975449.signin.aws.amazon.com/console
+  
 
 
