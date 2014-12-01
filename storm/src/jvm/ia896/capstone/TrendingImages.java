@@ -29,6 +29,7 @@ import backtype.storm.utils.Utils;
 import ia896.capstone.bolt.DownloaderBolt;
 import ia896.capstone.bolt.RecurringImageFilterBolt;
 import ia896.capstone.bolt.ImageFilterBolt;
+import ia896.capstone.bolt.MatcherBolt;
 import ia896.capstone.bolt.PrinterBolt;
 import ia896.capstone.spout.TwitterSampleSpout;
 
@@ -63,6 +64,10 @@ public class TrendingImages {
         // 4- recurrent images filter -> downloader
         builder.setBolt("downloader", new DownloaderBolt())
                 .shuffleGrouping("recurrent-img-filter");
+
+        // 5- downloader -> matcher
+        builder.setBolt("matcher", new MatcherBolt())
+                .shuffleGrouping("downloader");
 
         Config conf = new Config();
         //conf.setDebug(true);
