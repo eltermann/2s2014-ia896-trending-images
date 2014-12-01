@@ -25,7 +25,7 @@ def display_image(content):
         img = load_img(content, dtype)
         if not img is None:
             cv2.imshow(str(display_image.counter), img)
-            cv2.waitKey(0)
+            cv2.waitKey(1)
             break
 
 
