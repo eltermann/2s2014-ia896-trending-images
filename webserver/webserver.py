@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+from datetime import datetime
 from flask import Flask
 from flask import request
 import json
@@ -39,6 +40,7 @@ if __name__ == '__main__':
         conn = pymongo.Connection('localhost', 27017)
         matches_collection = conn['ia896']['twitter_matches']
 
+        start_t = datetime.now()
         ret = matches_collection.aggregate([
             # aggregation pipeline
             {'$match': {'$and': [{'first_occurrence': {'$lt': time_to}}, {'last_occurrence': {'$gt': time_from}}]}},
@@ -48,6 +50,7 @@ if __name__ == '__main__':
             {'$sort': {'count': -1}},
             {'$limit': 10},
         ])
+        end_t = datetime.now()
 
         if not 'ok' in ret or ret['ok'] != 1:
             return json.dumps({
@@ -57,6 +60,7 @@ if __name__ == '__main__':
 
         resp = {
             'status': 'ok',
+            'query_time_us': (end_t - start_t).microseconds,
             'data': [],
         }
         max_count = ret['result'][0]['count']
