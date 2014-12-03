@@ -73,6 +73,7 @@ class MatcherBolt(storm.BasicBolt):
                     'representative': url,
                     'occurrences': [timestamp],
                     'images': [url],
+                    'first_occurrence': timestamp,
                     'last_occurrence': timestamp,
                 }
                 matchset_id = matches_collection.insert(matchset)

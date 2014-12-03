@@ -63,6 +63,7 @@ class DownloaderBolt(storm.BasicBolt):
                     image = {
                         '_id': url,
                         'content': Binary(response.content),
+                        'first_occurrence': timestamp,
                         'last_occurrence': timestamp,
                         'occurrences': [timestamp],
                     }
