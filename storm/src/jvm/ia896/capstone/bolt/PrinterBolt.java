@@ -22,12 +22,17 @@ import backtype.storm.topology.OutputFieldsDeclarer;
 import backtype.storm.topology.base.BaseBasicBolt;
 import backtype.storm.tuple.Tuple;
 
+import java.util.Date;
+import java.text.SimpleDateFormat;
+
 
 public class PrinterBolt extends BaseBasicBolt {
 
   @Override
   public void execute(Tuple tuple, BasicOutputCollector collector) {
-    System.out.println(tuple.getString(0));
+    Date date = new Date();
+    SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd-hh-mm-ss");
+    System.out.println(ft.format(date) + " " + tuple.getString(0));
   }
 
   @Override
