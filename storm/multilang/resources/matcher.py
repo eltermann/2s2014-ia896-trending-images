@@ -1,3 +1,4 @@
+import pHash
 import pymongo
 import storm
 import time
@@ -5,15 +6,11 @@ import time
 
 DOWNLOAD_TRIES = 5
 MATCHSET_WINDOW = 1800000 # 30 min
-DISTANCE_THRESHOLD = 0.1 # arbitrary for now
+DISTANCE_THRESHOLD = 2 # pHash distance considered OK
 
 
 def ia896_capstone_calculate_dist(img1, img2):
-    # for now, return distance=0 if image is exactly the same, and 1 otherwise
-    if img1['content'] == img2['content']:
-        return 0
-    else:
-        return 1
+    return pHash.hamming_distance(long(img1['phash']), long(img2['phash']))
 
 
 class MatcherBolt(storm.BasicBolt):

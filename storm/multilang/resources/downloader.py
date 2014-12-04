@@ -1,32 +1,29 @@
+import os
+import sys
+
 from bson.binary import Binary
 import cv2
 import gridfs
 import numpy as np
+import pHash
 import pymongo
+import random
 import requests
 import storm
 
 
 DOWNLOAD_TRIES = 5
-DISPLAY_IMAGES = False # change to True to allow cv2.imshow() display images
 
 
-def display_image(content):
-    display_image.counter = display_image.counter+1 if hasattr(display_image, 'counter') else 0
-
-    def load_img(content, dtype):
-        try:
-            img = cv2.imdecode(np.fromstring(content, dtype=dtype, sep=""), cv2.CV_LOAD_IMAGE_COLOR)
-        except:
-            return None
-        return img
-
-    for dtype in ['int16', 'int8']:
-        img = load_img(content, dtype)
-        if not img is None:
-            cv2.imshow(str(display_image.counter), img)
-            cv2.waitKey(1)
-            break
+def get_phash(content):
+    # the library receives a filepath, so we can't convert directly from memory
+    tmp_filename = '/tmp/capstone_hash_%s' % (random.randint(0, sys.maxint))
+    f = open(tmp_filename, 'w')
+    f.write(content)
+    f.close()
+    imghash = pHash.imagehash(tmp_filename)
+    os.remove(tmp_filename)
+    return imghash
 
 
 class DownloaderBolt(storm.BasicBolt):
@@ -49,8 +46,6 @@ class DownloaderBolt(storm.BasicBolt):
                 image['occurrences'] = [timestamp]
 
             images_collection.update({'_id': image['_id']}, image)
-            if DISPLAY_IMAGES:
-                display_image(image['content'])
             storm.emit([url, timestamp])
             return
         else:
@@ -62,14 +57,12 @@ class DownloaderBolt(storm.BasicBolt):
                 if response.status_code == 200:
                     image = {
                         '_id': url,
-                        'content': Binary(response.content),
+                        'phash': str(get_phash(response.content)),
                         'first_occurrence': timestamp,
                         'last_occurrence': timestamp,
                         'occurrences': [timestamp],
                     }
                     images_collection.insert(image)
-                    if DISPLAY_IMAGES:
-                        display_image(image['content'])
                     storm.emit([url, timestamp])
                     return
 
