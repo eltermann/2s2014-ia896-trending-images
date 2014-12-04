@@ -52,7 +52,7 @@ if __name__ == '__main__':
         ])
         end_t = datetime.now()
 
-        if not 'ok' in ret or ret['ok'] != 1:
+        if not 'ok' in ret or ret['ok'] != 1 or not 'result' in ret or len(ret['result']) == 0:
             return json.dumps({
                 'status': 'nok',
                 'data': 'query error',
