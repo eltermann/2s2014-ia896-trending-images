@@ -105,8 +105,12 @@ public class TrendingImages {
      * MUN-HAAAAAAAA!
      */
     static void pleaseRunOnRemoteCluster(TopologyBuilder builder) throws InvalidTopologyException, AuthorizationException, AlreadyAliveException {
-        Map conf = new HashMap();
-        conf.put(Config.TOPOLOGY_WORKERS, 4);
+        // Map conf = new HashMap();
+        // conf.put(Config.TOPOLOGY_WORKERS, 4);
+
+        Config conf = new Config();
+        conf.setNumWorkers(20);
+        conf.setMaxSpoutPending(5000);
 
         StormSubmitter.submitTopology("ia896-ftw", conf, builder.createTopology());
     }
