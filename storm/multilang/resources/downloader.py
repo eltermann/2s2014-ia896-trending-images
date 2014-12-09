@@ -2,7 +2,6 @@ import os
 import sys
 
 from bson.binary import Binary
-import gridfs
 import numpy as np
 import pHash
 import pymongo
