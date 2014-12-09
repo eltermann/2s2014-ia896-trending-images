@@ -10,7 +10,11 @@ DISTANCE_THRESHOLD = 2 # pHash distance considered OK
 
 
 def ia896_capstone_calculate_dist(img1, img2):
-    return pHash.hamming_distance(long(img1['phash']), long(img2['phash']))
+    hash1 = long(img1['phash'])
+    hash2 = long(img2['phash'])
+    if not hash1 or not hash2:
+        return 9999
+    return pHash.hamming_distance(hash1, hash2)
 
 
 class MatcherBolt(storm.BasicBolt):
