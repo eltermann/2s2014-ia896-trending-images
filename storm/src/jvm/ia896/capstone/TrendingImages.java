@@ -19,9 +19,15 @@
 package ia896.capstone;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 import backtype.storm.Config;
 import backtype.storm.LocalCluster;
+import backtype.storm.StormSubmitter;
+import backtype.storm.generated.AlreadyAliveException;
+import backtype.storm.generated.AuthorizationException;
+import backtype.storm.generated.InvalidTopologyException;
 import backtype.storm.topology.TopologyBuilder;
 import backtype.storm.tuple.Fields;
 import backtype.storm.utils.Utils;
@@ -69,6 +75,19 @@ public class TrendingImages {
         builder.setBolt("matcher", new MatcherBolt())
                 .shuffleGrouping("downloader");
 
+
+        boolean runOnServer = true;
+
+        if (runOnServer) {
+            System.out.println("* Running on server...");
+            try {
+                pleaseRunOnRemoteCluster(builder);
+            } catch (Exception e) {
+                System.out.println("Ops... " + e.getMessage());
+            }
+            return;
+        }
+
         Config conf = new Config();
         //conf.setDebug(true);
 
@@ -78,5 +97,17 @@ public class TrendingImages {
 
         Utils.sleep(99999999);
         cluster.shutdown();
+    }
+
+    /**
+     * Gently asks the server to run this "old evil spirit" remotely.
+     *
+     * MUN-HAAAAAAAA!
+     */
+    static void pleaseRunOnRemoteCluster(TopologyBuilder builder) throws InvalidTopologyException, AuthorizationException, AlreadyAliveException {
+        Map conf = new HashMap();
+        conf.put(Config.TOPOLOGY_WORKERS, 4);
+
+        StormSubmitter.submitTopology("ia896-ftw", conf, builder.createTopology());
     }
 }

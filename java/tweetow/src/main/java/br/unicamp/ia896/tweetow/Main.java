@@ -101,6 +101,7 @@ public class Main {
             if (parts.length < 2) {
                 error(source);
                 source.close();
+                source.close();
                 return;
             }
 
