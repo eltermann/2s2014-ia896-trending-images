@@ -42,13 +42,30 @@ import ia896.capstone.spout.TwitterSampleSpout;
 
 public class TrendingImages {
     public static void main(String[] args) {
-        String consumerKey = args[0]; 
-        String consumerSecret = args[1]; 
-        String accessToken = args[2]; 
-        String accessTokenSecret = args[3];
-        String[] arguments = args.clone();
-        String[] keyWords = Arrays.copyOfRange(arguments, 4, arguments.length);
-        
+
+        boolean extremeGoHorseModeOn = true;
+
+        String consumerKey, consumerSecret, accessToken, accessTokenSecret;
+        String[] arguments, keyWords;
+
+        if (extremeGoHorseModeOn) {
+            consumerKey = "0lnz3Rd444lMhGpGW9FHhA";
+            consumerSecret = "07HIW8D60YyFCBC419cyCv4tbsyqcVZ5sEshfrA";
+            accessToken = "1514119184-eexlGEtbdD0ks4liTs9DBijoi2KwPvvWua8TfDW";
+            accessTokenSecret = "9LtsZg7skbJ3SPDnqPKOvUOQtqDxlMq6H9M0CKym0";
+            arguments = new String[] {};
+            keyWords = new String[] {};
+        } else {
+            consumerKey = args[0];
+            consumerSecret = args[1];
+            accessToken = args[2];
+            accessTokenSecret = args[3];
+            arguments = args.clone();
+            keyWords = Arrays.copyOfRange(arguments, 4, arguments.length);
+        }
+
+
+
         TopologyBuilder builder = new TopologyBuilder();
         
         // 1- spout
