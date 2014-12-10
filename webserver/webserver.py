@@ -82,10 +82,14 @@ if __name__ == '__main__':
         images_collection = conn['ia896']['twitter_images']
 
         output = ''
+        count = 0
         for matchset in matches_collection.find():
+            if count > 200:
+                break
             if len(matchset['images']) > 0:
                 phashes = [img['phash'] for img in images_collection.find({'matchset': matchset['_id']})]
                 if len(set(phashes)) > 1:
+                    count += 1
                     imgs = ['<img src="%s"></img>' % (url) for url in matchset['images']]
                     output += '<hr />' + ''.join(imgs)
         return output
