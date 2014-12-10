@@ -28,11 +28,13 @@ if __name__ == '__main__':
           - status: {ok, nok}
           - data: list of matches, if status=ok; error msg if status=nok
         """
+        ia896_json = lambda x: 'jsonCallback(%s);' % (json.dumps(x))
+
         try:
             time_from = 1000*long(request.args.get('from', ''))
             time_to = 1000*long(request.args.get('to', ''))
         except:
-            return json.dumps({
+            return ia896_json({
                 'status': 'nok',
                 'data': 'invalid input `date` and `to`',
             })
@@ -53,7 +55,7 @@ if __name__ == '__main__':
         end_t = datetime.now()
 
         if not 'ok' in ret or ret['ok'] != 1 or not 'result' in ret or len(ret['result']) == 0:
-            return json.dumps({
+            return ia896_json({
                 'status': 'nok',
                 'data': 'query error',
             })
@@ -72,7 +74,7 @@ if __name__ == '__main__':
                 'absolute': doc['count'],
                 'normalized': '%.3f' % (float(doc['count'])/max_count),
             })
-        return json.dumps(resp)
+        return ia896_json(resp)
 
 
     @app.route('/non-identical-matches', methods = ['GET'])
