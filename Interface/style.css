@@ -1,0 +1,198 @@
+* { margin:0; padding:0;}
+body { background:#fff; font-family:Arial; font-size:100%; line-height:1.25em; color:#a4a4a4;}
+
+
+/*in_line*/
+input, select { vertical-align:middle; font-weight:normal;}
+img {border:0; vertical-align:top; text-align:left;}
+
+a:hover{text-decoration:none;}
+a {color:#a4a4a4;}
+
+.clear { clear:both;}
+
+.fleft { float:left;}
+.fright { float:right;}
+
+.alignright { text-align:right;}
+
+p { margin:0; padding:0;}
+
+.tall_top { background:url(images/tall_top.gif) left top repeat-x #fff; width:100%;}
+
+.form { height:26px;}
+.form input {width:273px; height:18px; background:#fff; border:1px solid #b4b4b4; color:#8c8c8c; font-size:0.92em; font-family:Tahoma;}
+textarea { width:286px; height:96px; background:#fff; overflow:auto; border:1px solid #b4b4b4; font-family:Tahoma; color:#8c8c8c; font-size:0.92em; }
+
+.input1 { width:137px; height:14px; border:1px solid #808080; font-size:1em; color:#b5b5b5;}
+
+ol { padding:0px;}
+ol li { color:#20b4f1; font-weight:bold; margin-left:23px; list-style-type:decimal-leading-zero;}
+ol li a { color:#20b4f1; line-height:2.5em;}
+ol li a span { font-weight:normal;}
+
+ul { list-style:none;}
+
+.title { margin:0 0 43px 0;}
+
+.img_indent { margin:0 20px 0 0; float:left;}
+
+
+/*txt, links*/
+h3 { font-size:1.27em; color:#20b4f1; margin:2px 0 8px 0;}
+h4 { font-size:1.1em; margin-bottom:17px;}
+h4 a { color:#20b4f1; font-weight:normal;}
+
+.txt1 { color:#20b4f1;}
+
+.link1 { color:#a2a2a2;}
+.link2 { color:#20b4f1;}
+.link3 { background:url(images/marker.gif) no-repeat 0 6px; padding-left:10px; text-decoration:none;}
+.link3:hover { text-decoration:underline;}
+.link4 { background:url(images/marker1.gif) no-repeat 0 4px; padding-left:13px; text-decoration:none; font-weight:bold; color:#7d7d7d; text-transform:uppercase; font-size:0.92em;}
+.link4:hover { text-decoration:underline;}
+.link5 { background:url(images/marker2.gif) no-repeat 0 6px; padding-left:10px; color:#20b4f1;}
+
+.line_hor { background:url(images/line2.gif) left bottom repeat-x; padding-bottom:31px; margin-bottom:30px;}
+.line_hor1 { background:url(images/line4.gif) left bottom repeat-x; padding-bottom:12px; margin-bottom:22px;}
+.line_hor2 { background:url(images/line5.gif) left bottom repeat-x; padding-bottom:29px; margin-bottom:27px;}
+
+
+/*header*/
+#header .row_1 { height:145px;}
+#header .row_1 .fleft img { margin:70px 0 0 0;}
+#header .row_1 .fright .indent { padding:66px 30px 0 0;}
+#header .row_2 { height:105px; background:url(images/header_menu_bgd.gif) left top repeat-x;}
+#header .row_2 .left { background:url(images/header_menu_left.gif) no-repeat left top;}
+#header .row_2 .right { background:url(images/header_menu_right.gif) no-repeat right top;}
+#header .row_2 .indent { padding:30px 0 22px 37px;}
+
+/*left_side*/
+#left_side { font-size:0.69em; color:#a2a2a2; line-height:1.45em;}
+
+#content { font-size:0.75em;}
+
+/*footer*/
+#footer { font-size:0.75em; }
+#footer .fleft {color:#565656; background:url(images/footer_bgd1.gif) left top no-repeat;}
+#footer .fleft .indent { padding:36px 0 0 58px;}
+#footer .fright { font-family:Tahoma; background:url(images/footer_bgd2.gif) no-repeat right top;}
+#footer .fright .indent { padding:31px 53px 0 0;}
+#footer .fright span { background:url(images/footer_marker.gif) no-repeat 0 2px; padding-left:45px; display:block; line-height:2.5em;}
+
+
+
+/*================== index.html ==================*/
+#page1 #left_side .indent { padding:397px 40px 0 64px;}
+#page1 #left_side .indent1 { padding:55px 0 58px 0;}
+#page1 #left_side .indent1 .title { margin-bottom:31px;}
+#page1 #content .row_1 .indent { padding:0 0 0 5px;}
+#page1 #content .row_1 .col_1 .indent { padding:0 11px 0 0;}
+#page1 #content .row_1 .col_1 .indent1 { padding:23px 0 0 14px;}
+#page1 #content .row_1 .col_1 p { margin-bottom:14px;}
+#page1 #content .row_1 .col_1 .indent2 { padding:48px 0 0 12px;}
+#page1 #content .row_1 .col_1 .indent2 .title { margin-bottom:25px;}
+#page1 #content .row_1 .col_2 .indent { padding:0 25px 0 0;}
+#page1 #content .row_1 .col_2 .line_hor1 { margin-bottom:35px;}
+#page1 #content .row_1 .col_2 .indent1 { padding-left:15px;}
+#page1 #content .row_1 .col_2 .indent1 img { margin-bottom:13px;}
+#page1 #content .row_1 .col_2 .block .ind { padding:20px 24px 28px 24px;}
+#page1 #content .row_1 .col_2 .indent2 { padding:100px 0 0 40px;}
+#page1 #content .row_2 .indent { padding:48px 0 0 17px;}
+
+/*================== index-1.html ==================*/
+#page2 #left_side .indent { padding:397px 50px 61px 64px;}
+#page2 #left_side .title { margin-bottom:44px;}
+#page2 #left_side h4 { margin-top:24px;}
+#page2 #left_side ol { margin:8px 0 9px 0;}
+#page2 #left_side ol li { font-size:1.1em;}
+#page2 #left_side p { margin-bottom:14px;}
+#page2 #left_side .link5 { font-size:1.1em;}
+#page2 #content .indent {margin:0 30px 0 5px;}
+#page2 #content .indent1 { padding:0 0 0 16px; line-height:1.33em;}
+#page2 #content .img_indent { margin-bottom:24px;}
+#page2 #content p { font-size:0.92em; margin-bottom:16px;}
+#page2 #content .block .ind { padding:20px 20px 9px 24px;}
+#page2 #content .indent2 { padding:48px 0 0 12px;}
+#page2 #content .indent2 .title { margin-bottom:29px;}
+#page2 #content .indent2 h4 { margin-bottom:15px;}
+#page2 #content .indent2 p { line-height:1.45em; margin-bottom:8px;}
+
+/*================== index-2.html ==================*/
+#page3 #left_side .indent { padding:397px 50px 58px 64px;}
+#page3 #left_side .title { margin-bottom:40px;}
+#page3 #left_side ol { margin:8px 0 13px 0;}
+#page3 #left_side ol li { font-size:1.1em; }
+#page3 #left_side ol li a {line-height:30px;}
+#page3 #left_side p { margin-bottom:9px;}
+#page3 #left_side .link5 { font-size:1.1em;}
+#page3 #content .line_hor1 { padding-bottom:12px; margin-bottom:19px;}
+#page3 #content .indent {margin:0 30px 0 5px;}
+#page3 #content .indent1 { padding:0 0 0 16px; line-height:1.33em;}
+#page3 #content .img_indent {margin:0 19px 21px -1px;}
+#page3 #content p { font-size:0.92em; margin-bottom:22px;}
+#page3 #content .p1 { margin:16px 0 0 0;}
+#page3 #content .top_indent { padding-top:7px;}
+#page3 #content .block .ind { padding:20px 20px 16px 24px;}
+
+/*================== index-3.html ==================*/
+#page4 #left_side .indent { padding:397px 50px 40px 64px;}
+#page4 #left_side .title { margin-bottom:40px;}
+#page4 #left_side ol { margin:8px 0 9px 0;}
+#page4 #left_side ol li { font-size:1.1em;}
+#page4 #left_side .img_indent { margin-bottom:21px; margin-right:19px;}
+#page4 #left_side p { margin-bottom:20px;}
+#page4 #left_side .p1 { margin-bottom:22px;}
+#page4 #left_side .link5 { font-size:1.1em;}
+#page4 #content .indent {margin:0 30px 0 5px;}
+#page4 #content .indent1 { padding:0 0 0 16px; line-height:1.33em;}
+#page4 #content .img_indent { margin-bottom:24px;}
+#page4 #content p { font-size:0.92em; margin-bottom:16px;}
+#page4 #content .block .ind { padding:20px 20px 37px 24px;}
+#page4 #content .indent2 { padding:18px 35px 0 17px;}
+#page4 #content .indent2 .title { margin-bottom:29px;}
+#page4 #content .indent2 h4 { margin-bottom:15px;}
+#page4 #content .indent2 p { line-height:1.45em; margin-bottom:8px;}
+#page4 #content .indent3 { padding:0 0 0 20px;}
+#page4 #content .line_hor1 { padding-bottom:7px; margin-bottom:18px;}
+
+/*================== index-4.html ==================*/
+#page5 #left_side .indent { padding:397px 54px 41px 64px;}
+#page5 #left_side .title { margin-bottom:40px;}
+#page5 #left_side .txt1 { font-size:1.1em;}
+#page5 #left_side p { margin-bottom:16px;}
+#page5 #left_side .link5 { font-size:1.1em;}
+#page5 #content .indent {margin:0 30px 0 5px; }
+#page5 #content .indent1 { padding:0 0 0 16px; line-height:1.33em; font-size:0.92em;}
+#page5 #content p { font-size:0.92em; margin-bottom:16px;}
+#page5 #content .block .ind { padding:20px 20px 29px 24px;}
+#page5 #content .indent2 { padding:48px 20px 0 12px;}
+#page5 #content .txt1 { font-size:1.1em;}
+#page5 #content .indent2 .title { margin-bottom:31px;}
+#page5 #content .indent2 h4 { margin-bottom:15px;}
+#page5 #content .indent2 p { line-height:1.45em; margin-bottom:30px;}
+#page5 #content .container { width:573px;}
+
+/*================== index-5.html ==================*/
+#page6 #left_side .indent { padding:397px 54px 48px 64px;}
+#page6 #left_side .title { margin-bottom:40px;}
+#page6 #left_side p { margin-bottom:15px;}
+#page6 #content .indent {margin:18px 30px 0 17px; }
+#page6 #content p {font-size:0.92em; margin-bottom:16px; line-height:1.45em;}
+#page6 #content .title { margin-bottom:31px;}
+
+/*==================list====================*/
+.block { background:#f3f3f3; width:100%;}
+.block .l_t { background:url(images/l_t.gif) no-repeat left top;}
+.block .r_t { background:url(images/r_t.gif) no-repeat right top;}
+.block .r_b { background:url(images/r_b.gif) no-repeat right bottom;}
+.block .l_b { background:url(images/l_b.gif) no-repeat left bottom;}
+.block .ind { padding:20px 20px 29px 24px;}
+
+.block1 { background:url(images/line1.gif) left top repeat-y; width:260px;}
+.block1 .ind { padding:0 0 8px 28px;}
+
+.block2 { background:url(images/line3.gif) left top repeat-y; width:260px;}
+.block2 .ind { padding:21px 0 2px 28px;}
+
+/*==========================================*/

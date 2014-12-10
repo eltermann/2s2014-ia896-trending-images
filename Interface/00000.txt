@@ -1,0 +1,165 @@
+<!doctype html>
+<html>
+<head>
+		<meta charset="utf-8">
+		<title>Trending Images</title>
+        <script language="JavaScript" src="functions.js"></script>
+        <script language="JavaScript" src="bootstrap.js"></script> 
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <style>
+			
+		</style>      
+</head>
+<body>  
+<div id="wrapper">
+	<div id="fixed_images">
+    	<img src="4.jpg" height="120" alt=""/>
+        <img src="6.jpg" height="120" alt=""/>
+        <img src="1.jpg" width="160" height="120" alt=""/>
+    	<img src="2.jpg" width="160" height="120" alt=""/>
+    	<img src="3.jpg" height="120" alt=""/>
+    	<img src="5.jpg" alt="" height="120"/>
+     </div>
+	<header>
+		<h1>Imagens mais frequentes no Twitter </h1>
+	</header>
+    <section id="Search">
+    	<form role="form">
+        	<h5>Faça sua busca por:	</h5>
+            
+        	<!-- Check box da data -->
+       	  <div class="checkbox">
+				<label>
+				<!--<input type="checkbox" id="check_data"> -->
+                <label>Data. Escolha aqui sua data. De</label>
+           		<input type="datetime-local" id="datafrom" onClick="datepicker();">
+                
+                <label> até </label>
+		        <input type="datetime-local" id="datato"  onClick="datepicker();" > 
+				</label>
+		  </div>
+            <!-- Check box da imagem -->
+<!--           <div class="checkbox">
+				<label>
+			    	<input type="checkbox" id="check_image"> <label>Imagem. Upload sua imagem:</label>
+                	<!-- Upload de arquivos -->
+<!--        			<div class="form-group">
+		    			<input type="file" id="exampleInputFile">
+					</div> 
+                </label>            
+			</div>                       -->
+     
+	   	  <input name="Button" type="button" id="Button" onClick="buscar();" value="Enviar">
+    	  <input type="reset" onClick="esconde_resultados()">
+       </form>
+      <div id="texto"></div>
+    </section>
+    
+	<html>
+	  	<section id = "results_section">
+    		<h5 id = "results_title"></h5>
+    			<div id="image_0">
+                	<div>
+                		<h7 id="count_image_0"></h7>
+                     </div>
+    				<img id="img0-0" height="120" alt=""/>
+       				<img id="img0-1" height="120" alt=""/>
+	    			<img id="img0-2" height="120" alt=""/>
+    				<img id="img0-3" height="120" alt=""/>
+    				<img id="img0-4" height="120" alt=""/>
+     			</div>        
+     			<div id="image_1">
+                	<div>
+                		<h7 id="count_image_1"></h7>
+                    </div>
+    				<img id="img1-0" height="120" alt=""/>
+       				<img id="img1-1" height="120" alt=""/>
+	    			<img id="img1-2" height="120" alt=""/>
+    				<img id="img1-3" height="120" alt=""/>
+    				<img id="img1-4" height="120" alt=""/>
+     			</div>   
+      			<div id="image_2">
+                	<div>
+                		<h7 id="count_image_2"></h7>
+                    </div>
+    				<img id="img2-0" height="120" alt=""/>
+       				<img id="img2-1" height="120" alt=""/>
+	    			<img id="img2-2" height="120" alt=""/>
+    				<img id="img2-3" height="120" alt=""/>
+    				<img id="img2-4" height="120" alt=""/>
+     			</div>                 
+    			<div id="image_3">
+                	<div>
+                		<h7 id="count_image_3"></h7>
+                    </div>
+    				<img id="img3-0" height="120" alt=""/>
+       				<img id="img3-1" height="120" alt=""/>
+	    			<img id="img3-2" height="120" alt=""/>
+    				<img id="img3-3" height="120" alt=""/>
+    				<img id="img3-4" height="120" alt=""/>
+     			</div>        
+     			<div id="image_4">
+                	<div>
+                		<h7 id="count_image_4"></h7>
+                    </div>
+    				<img id="img4-0" height="120" alt=""/>
+       				<img id="img4-1" height="120" alt=""/>
+	    			<img id="img4-2" height="120" alt=""/>
+    				<img id="img4-3" height="120" alt=""/>
+    				<img id="img4-4" height="120" alt=""/>
+     			</div>   
+      			<div id="image_5">
+                	<div>
+                		<h7 id="count_image_5"></h7>
+                    </div>
+    				<img id="img5-0" height="120" alt=""/>
+       				<img id="img5-1" height="120" alt=""/>
+	    			<img id="img5-2" height="120" alt=""/>
+    				<img id="img5-3" height="120" alt=""/>
+    				<img id="img5-4" height="120" alt=""/>
+     			</div>  
+    			<div id="image_6">
+                	<div>
+                		<h7 id="count_image_6"></h7>
+                    </div>
+    				<img id="img6-0" height="120" alt=""/>
+       				<img id="img6-1" height="120" alt=""/>
+	    			<img id="img6-2" height="120" alt=""/>
+    				<img id="img6-3" height="120" alt=""/>
+    				<img id="img6-4" height="120" alt=""/>
+     			</div>        
+     			<div id="image_7">
+                	<div>
+                		<h7 id="count_image_7"></h7>
+                    </div>
+    				<img id="img7-0" height="120" alt=""/>
+       				<img id="img7-1" height="120" alt=""/>
+	    			<img id="img7-2" height="120" alt=""/>
+    				<img id="img7-3" height="120" alt=""/>
+    				<img id="img7-4" height="120" alt=""/>
+     			</div>   
+      			<div id="image_8">
+                	<div>
+                		<h7 id="count_image_8"></h7>
+                    </div>
+    				<img id="img8-0" height="120" alt=""/>
+       				<img id="img8-1" height="120" alt=""/>
+	    			<img id="img8-2" height="120" alt=""/>
+    				<img id="img8-3" height="120" alt=""/>
+    				<img id="img8-4" height="120" alt=""/>
+     			</div> 
+      			<div id="image_9">
+                	<div>
+                		<h7 id="count_image_9"></h7>
+                    </div>
+    				<img id="img9-0" height="120" alt=""/>
+       				<img id="img9-1" height="120" alt=""/>
+	    			<img id="img9-2" height="120" alt=""/>
+    				<img id="img9-3" height="120" alt=""/>
+    				<img id="img9-4" height="120" alt=""/>
+     			</div>                              		
+   		 </section>
+	</html>
+</div>
+</body>
+</html>

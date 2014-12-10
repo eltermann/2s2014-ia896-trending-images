@@ -1,0 +1,35 @@
+
+
+
+
+Não deram certo:
+
+
+**Não executa a funcao callback**
+$.getJSON("http://54.149.70.51:54321/top10?", function() {document.getElementById("texto").innerHTML = "deu certo";});
+
+$.getJSON("http://54.149.70.51:54321/top10", function() {document.getElementById("texto").innerHTML = "deu certo";});
+
+$.getJSON("http://54.149.70.51:54321/top10", function(){windows.alert("success");});
+
+$.getJSON("http://54.149.70.51:54321/top10", json_msg, function(){windows.alert("success");});
+
+
+$.getJSON("54.149.70.51:54321/top10", json_msg, exibe(data));
+
+
+$.getJSON("http://54.149.70.51:54321/top10", json_msg, function(data){exibe(data);});
+
+
+$.get("http://54.149.70.51:54321/top10", { from:1417824000, to:1417996740 }, function(data){exibe(data);});
+
+$.ajax({type: "GET", url: "http://54.149.70.51:54321/top10", dataType: "jsonp", data: json_msg, success: function(){windows.alert("success");}, error: function(){windows.alert("falha");}});
+
+
+
+Dá msg de falha:
+
+$.ajax({type: "GET", url: "http://54.149.70.51:54321/top10?from="+this.from+"&to="+this.to, async:false, dataType: "jsonp", success: function(){alert("success");}, error: function(){alert("falha");}});
+
+$.ajax({type: "GET", url: "http://54.149.70.51:54321/top10?from="+this.from+"&to="+this.to, async:false, dataType: "jsonp", success: function(){alert("success");}, error: function(){alert("falha");}});
+	
