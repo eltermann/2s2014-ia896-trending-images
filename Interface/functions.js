@@ -117,6 +117,8 @@ function jsonCallback(data){
 	
 	var image
 	var count
+	
+
 	$(document.getElementById("results_section")).show();
 	//mostra as imagens, caso retorne alguma ou retorna msg de erro, caso o servidor de erro
 	if (obj.status == "ok"){
@@ -124,14 +126,32 @@ function jsonCallback(data){
 		document.getElementById("results_title").innerHTML = "Resultados:";
 		for(i=0;i<10;i++){
 			count = "count_image_" + i
+			header = "header_img"+i
 			document.getElementById(count).innerHTML = "A seguinte imagem apareceu " + obj.data[i].absolute + " vezes. Valor normalizado: " + obj.data[i].normalized;
+			document.getElementById(header).innerHTML = (i+1)+"ª posição";
 			//para a imagem i, vejo o numero de imagens que ela tem. 0<j<n.o de url's
+			for(j=0;j<5;j++){				
+					image = "img" + i + "-" + j;
+					aimage = "a"+image;
+					if(j<obj.data[i].imgs.length){
+						document.getElementById(image).src = obj.data[i].imgs[j];
+						document.getElementById(aimage).href = obj.data[i].imgs[j];
+					} else {
+						document.getElementById(image).src = "";
+					}
+					
+			}
+			
+			//var img = "#image_"+i;
+			//$(img).puigalleria("startSlideshow"); 
+			/*
 			for(j=0;j<obj.data[i].imgs.length & j<5;j++){				
 					image = "img" + i + "-" + j;
 					document.getElementById(image).src = obj.data[i].imgs[j];
 					
-			}
+			}*/
 		}
+		document.getElementById("texto").innerHTML = "";
 	}
 	else {
 		//mensagem de erro
@@ -150,4 +170,5 @@ function datepicker() {
 
 function esconde_resultados(){
 	$(document.getElementById("results_section")).hide();
+	document.getElementById("texto").innerHTML = "";
 }

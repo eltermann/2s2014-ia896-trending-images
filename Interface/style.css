@@ -39,11 +39,12 @@ ul { list-style:none;}
 
 
 /*txt, links*/
-h3 { font-size:1.27em; color:#20b4f1; margin:2px 0 8px 0;}
+h3 { font-size:1.27em; color:#484848; margin:2px 0 8px 0;}//#20b4f1
 h4 { font-size:1.1em; margin-bottom:17px;}
-h4 a { color:#20b4f1; font-weight:normal;}
+h4 a { color:#474747; font-weight:normal;}//#20b4f1
+h7 { font-size:1.1em; color:#474747; margin-bottom:17px;}
 
-.txt1 { color:#20b4f1;}
+.txt1 { color:#444444;}
 
 .link1 { color:#a2a2a2;}
 .link2 { color:#20b4f1;}
