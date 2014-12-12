@@ -9,11 +9,14 @@ function buscar() {
 		var datafrom = new Date(document.getElementById("datafrom").value);
 		//document.getElementById("texto").innerHTML = data;
 		this.from = datafrom.getTime()/1000;
+		this.from += document.getElementById("amountHf").value*3600 + document.getElementById("amountMf").value*60;
+		alert(this.from);
 		//para teste
 		//document.getElementById("texto").innerHTML = this.from;
 		
 		var datato = new Date(document.getElementById("datato").value);
 		this.to = datato.getTime()/1000;
+		this.from += document.getElementById("amountHt").value*3600 + document.getElementById("amountMt").value*60
 		//para teste
 		//document.getElementById("texto").innerHTML = this.to;
 		
@@ -76,31 +79,7 @@ function buscar() {
 			alert( "Data Loaded: " + data );
 		});*/
 	
-/* erro que retorna do get
-http://jaydson.org/capturar-erros-ajax-com-jquery/
-readyState : 0
-getResponseHeader : function (a){var b;if(2===t){if(!j){j={};while(b=Cc.exec(f))j[b[1].toLowerCase()]=b[2]}b=j[a.toLowerCase()]}return null==b?null:b}
-getAllResponseHeaders : function (){return 2===t?f:null}
-setRequestHeader : function (a,b){var c=a.toLowerCase();return t||(a=s[c]=s[c]||a,r[a]=b),this}
-overrideMimeType : function (a){return t||(k.mimeType=a),this}
-statusCode : function (a){var b;if(a)if(2>t)for(b in a)q[b]=[q[b],a[b]];else v.always(a[v.status]);return this}
-abort : function (a){var b=a||u;return i&&i.abort(b),x(0,b),this}
-state : function (){return c}
-always : function (){return e.done(arguments).fail(arguments),this}
-then : function (){var a=arguments;return m.Deferred(function(c){m.each(b,function(b,f){var g=m.isFunction(a[b])&&a[b];e[f[1]](function(){var a=g&&g.apply(this,arguments);a&&m.isFunction(a.promise)?a.promise().done(c.resolve).fail(c.reject).progress(c.notify):c[f[0]+"With"](this===d?c.promise():this,g?[a]:arguments)})}),a=null}).promise()}
-promise : function (a){return null!=a?m.extend(a,d):d}
-pipe : function (){var a=arguments;return m.Deferred(function(c){m.each(b,function(b,f){var g=m.isFunction(a[b])&&a[b];e[f[1]](function(){var a=g&&g.apply(this,arguments);a&&m.isFunction(a.promise)?a.promise().done(c.resolve).fail(c.reject).progress(c.notify):c[f[0]+"With"](this===d?c.promise():this,g?[a]:arguments)})}),a=null}).promise()}
-done : function (){if(h){var d=h.length;!function f(b){m.each(b,function(b,c){var d=m.type(c);"function"===d?a.unique&&k.has(c)||h.push(c):c&&c.length&&"string"!==d&&f(c)})}(arguments),b?e=h.length:c&&(g=d,j(c))}return this}
-fail : function (){if(h){var d=h.length;!function f(b){m.each(b,function(b,c){var d=m.type(c);"function"===d?a.unique&&k.has(c)||h.push(c):c&&c.length&&"string"!==d&&f(c)})}(arguments),b?e=h.length:c&&(g=d,j(c))}return this}
-progress : function (){if(h){var d=h.length;!function f(b){m.each(b,function(b,c){var d=m.type(c);"function"===d?a.unique&&k.has(c)||h.push(c):c&&c.length&&"string"!==d&&f(c)})}(arguments),b?e=h.length:c&&(g=d,j(c))}return this}
-complete : function (){if(h){var d=h.length;!function f(b){m.each(b,function(b,c){var d=m.type(c);"function"===d?a.unique&&k.has(c)||h.push(c):c&&c.length&&"string"!==d&&f(c)})}(arguments),b?e=h.length:c&&(g=d,j(c))}return this}
-success : function (){if(h){var d=h.length;!function f(b){m.each(b,function(b,c){var d=m.type(c);"function"===d?a.unique&&k.has(c)||h.push(c):c&&c.length&&"string"!==d&&f(c)})}(arguments),b?e=h.length:c&&(g=d,j(c))}return this}
-error : function (){if(h){var d=h.length;!function f(b){m.each(b,function(b,c){var d=m.type(c);"function"===d?a.unique&&k.has(c)||h.push(c):c&&c.length&&"string"!==d&&f(c)})}(arguments),b?e=h.length:c&&(g=d,j(c))}return this}
-responseText : 
-status : 0
-statusText : error
 
-http://api.jquery.com/*/
 	
 	//exibe();
 	//document.getElementById("texto").innerHTML = data;

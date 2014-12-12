@@ -22,7 +22,7 @@
 <!--  http://jqueryui.com/slider/#range
   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">-->
   <script>
-  $(function() {
+  /*$(function() {
     	$( "#slider-range").slider({
      		range: true,
       			min: 0,
@@ -33,7 +33,63 @@
       			}
    		});
     	$( "#amount" ).val( $( "#slider-range" ).slider( "values", 0 ) + " - " + $( "#slider-range" ).slider( "values", 1 ) + "min" );
-  });
+  });*/
+  
+     $(function() {
+    	$( "#sliderHour" ).slider({
+      		value:0,
+		   	min: 0,
+		    max: 23,
+      		step: 1,
+      		slide: function( event, ui ) {
+        		$( "#amountHf" ).val(ui.value);
+      		}
+    	});
+    	$( "#amountHf" ).val( $( "#sliderHour" ).slider( "value" ) );
+  	});
+  
+  
+  
+     $(function() {
+    	$( "#sliderMin" ).slider({
+      		value:30,
+		   	min: 0,
+		    max: 59,
+      		step: 1,
+      		slide: function( event, ui ) {
+        		$( "#amountMf" ).val(ui.value);
+      		}
+    	});
+    	$( "#amountMf" ).val( $( "#sliderHour" ).slider( "value" ));
+  	});
+	
+	     $(function() {
+    	$( "#sliderHourTo" ).slider({
+      		value:0,
+		   	min: 0,
+		    max: 23,
+      		step: 1,
+      		slide: function( event, ui ) {
+        		$( "#amountHt" ).val(ui.value);
+      		}
+    	});
+    	$( "#amountHt" ).val( $( "#sliderHourTo" ).slider( "value" ));
+  	});
+  
+  
+  
+     $(function() {
+    	$( "#sliderMinTo" ).slider({
+      		value:30,
+		   	min: 0,
+		    max: 59,
+      		step: 1,
+      		slide: function( event, ui ) {
+        		$( "#amountMt" ).val(ui.value);
+      		}
+    	});
+    	$( "#amountMt" ).val( $( "#sliderHourTo" ).slider( "value" ));
+  	});
   </script> 
   
 <!-- http://www.primefaces.org/primeui/lightbox.html1		
@@ -60,24 +116,52 @@
 		<div id="main">
 			<div id="left_side">
 				<div class="indent">
-					<img class="title" alt="" src="images/5_t1.gif" /><br />
+					<br>
 					<strong class="txt1">Faça sua busca por data.</strong>
                     <p/>
-					<p>				
+					<!--FROM-->
+                    <p>				
                         <!--<input type="checkbox" id="check_data"> -->
-						<label> <strong>De</strong></label>
-						<input type="datetime-local" required id="datafrom" autocomplete="on" onClick="datepicker();" >
+						<label> <strong>De </strong></label>
+						<input type="date" required id="datafrom" autocomplete="on" onClick="datepicker();" >
                        <!-- <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">-->
                     </p>
                     <p>
-					  <label for="amount">Price range:</label>
-					  <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+					  <label for="amountHf"><strong>Horário inicial:</strong></br>Horas:</label>
+					  <input type="text" id="amountHf" readonly style="border:0; color:#0E70CB; font-weight:bold;">
 					</p>
-                    <div id="slider-range"></div>
+                    <div id="sliderHour"></div>
+                    <p>
+                      <label for="amountMf">Minutos:</label>
+					  <input type="text" id="amountMf" readonly style="border:0; color:#0E70CB; font-weight:bold;">
+					</p>
+                    <div id="sliderMin"></div>  
+                    </br>
+  					<!--TO-->
+					<p>				
+                        <!--<input type="checkbox" id="check_data"> -->
+						<label> <strong>Até </strong></label>
+						<input type="date" required id="datato" autocomplete="on" onClick="datepicker();" >
+                       <!-- <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">-->
+                    </p>                    
+                    <p>
+					  <label for="amountHt"><strong>Horário Final:</strong></br>Horas:</label>
+					  <input type="text" id="amountHt" readonly style="border:0; color:#0E70CB; font-weight:bold;">
+					</p>
+                    <div id="sliderHourTo"></div>
+                    <p>
+                      <label for="amountMt">Minutos:</label>
+					  <input type="text" id="amountMt" readonly style="border:0; color:#0E70CB; font-weight:bold;">
+					</p>
+                    <div id="sliderMinTo"></div>
+                    </br>
+                    
+                     <!--              
 					<p>
 						<label> <strong> a </strong></label>
 						<input type="datetime-local" required id="datato" autocomplete="on"  onClick="datepicker();" > 
                     </p>
+                    -->
 						<input name="Button" type="button" id="Button" onClick="buscar();" value="Enviar">
 						<input type="reset" onClick="esconde_resultados()">
 						<h4 id="texto"></h4>
@@ -121,7 +205,7 @@
 															</div>
 															<div id="image_0">
                                                                 <div>
-                                                                	<br/><strong><header style="color:#484848" id="header_img0"> </header></strong>
+                                                                	<strong><header style="color:#484848" id="header_img0"> </header></strong>
                                                                     <h7 id="count_image_0"></h7>
 																</div>
 
