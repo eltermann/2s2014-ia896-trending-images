@@ -9,14 +9,15 @@ function buscar() {
 		var datafrom = new Date(document.getElementById("datafrom").value);
 		//document.getElementById("texto").innerHTML = data;
 		this.from = datafrom.getTime()/1000;
+		//alert(this.from);
 		this.from += document.getElementById("amountHf").value*3600 + document.getElementById("amountMf").value*60;
-		alert(this.from);
+		
 		//para teste
 		//document.getElementById("texto").innerHTML = this.from;
 		
 		var datato = new Date(document.getElementById("datato").value);
 		this.to = datato.getTime()/1000;
-		this.from += document.getElementById("amountHt").value*3600 + document.getElementById("amountMt").value*60
+		this.to += document.getElementById("amountHt").value*3600 + document.getElementById("amountMt").value*60;
 		//para teste
 		//document.getElementById("texto").innerHTML = this.to;
 		
@@ -135,6 +136,7 @@ function jsonCallback(data){
 	else {
 		//mensagem de erro
 		document.getElementById("texto").innerHTML = "Não conseguimos processar sua busca. Por favor, verifique as datas escolhidas e realize nova busca.";
+		$(document.getElementById("results_section")).hide();
 	}
 	
 	//$(document.getElementById("results_section")).show();
