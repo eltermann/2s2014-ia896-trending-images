@@ -11,7 +11,7 @@ class RecurringImageFilterBolt(storm.BasicBolt):
         global count
         global recurring_imgs
 
-        RECURRING_WINDOW = 600000 # 10 minutes (in milliseconds)
+        RECURRING_WINDOW = 6000000 # 100 minutes (in milliseconds)
         RECURRING_THRESHOLD = 2 # how many times the URL must reccur in `window` timeframe
 
         count += 1
@@ -20,7 +20,7 @@ class RecurringImageFilterBolt(storm.BasicBolt):
         timestamp = tup.values[1]
         now = 1000 * int(time.time())
 
-        if count % 5000 == 0:
+        if count % 10000 == 0:
             # remove expired occurrences from memory
             count = 0
             for key, value in recurring_imgs.iteritems():

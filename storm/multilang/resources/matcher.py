@@ -5,7 +5,7 @@ import time
 
 
 DOWNLOAD_TRIES = 5
-MATCHSET_WINDOW = 1800000 # 30 min
+MATCHSET_WINDOW = 86400000 # 24h in miliseconds
 DISTANCE_THRESHOLD = 2 # pHash distance considered OK
 
 
