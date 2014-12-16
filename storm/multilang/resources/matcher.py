@@ -21,7 +21,7 @@ class MatcherBolt(storm.BasicBolt):
     def process(self, tup):
         url = tup.values[0]
         timestamp = tup.values[1]
-        conn = pymongo.Connection('localhost', 27017)
+        conn = pymongo.Connection('172.31.26.27', 27017)
         images_collection = conn['ia896']['twitter_images']
         matches_collection = conn['ia896']['twitter_matches']
 

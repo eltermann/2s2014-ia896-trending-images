@@ -29,7 +29,7 @@ class DownloaderBolt(storm.BasicBolt):
         url = tup.values[0]
         timestamp = tup.values[1]
 
-        conn = pymongo.Connection('localhost', 27017)
+        conn = pymongo.Connection('172.31.26.27', 27017)
         images_collection = conn['ia896']['twitter_images']
 
         # check if image is downloaded; if not, download it
