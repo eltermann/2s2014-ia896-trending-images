@@ -14,6 +14,7 @@
         <script language="JavaScript" src="primeui-1.1/development/primeui-1.1.js"></script>  
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <script language="JavaScript" src="primeui-1.1/development/js/lightbox/lightbox.js"></script>
+        <script language="JavaScript" src="primeui-1.1/development/js/galleria/galleria.js"></script>
   		<script language="JavaScript" src="jquery-1.11.1.js"></script>
   		<script language="JavaScript" src="jquery-ui-1.11.2/jquery-ui.js"></script> 
 
@@ -21,20 +22,7 @@
 
 <!--  http://jqueryui.com/slider/#range
   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">-->
-  <script>
-  /*$(function() {
-    	$( "#slider-range").slider({
-     		range: true,
-      			min: 0,
-      			max: 60,
-      			values: [ 75, 300 ],
-      			slide: function( event, ui ) {
-        			$( "#amount" ).val( ui.values[ 0 ] + " - " + ui.values[ 1 ]  + "min");
-      			}
-   		});
-    	$( "#amount" ).val( $( "#slider-range" ).slider( "values", 0 ) + " - " + $( "#slider-range" ).slider( "values", 1 ) + "min" );
-  });*/
-  
+  <script> 
      $(function() {
     	$( "#sliderHour" ).slider({
       		value:0,
@@ -63,7 +51,7 @@
     	$( "#amountMf" ).val( $( "#sliderHour" ).slider( "value" ));
   	});
 	
-	     $(function() {
+	 $(function() {
     	$( "#sliderHourTo" ).slider({
       		value:0,
 		   	min: 0,
@@ -90,21 +78,9 @@
     	});
     	$( "#amountMt" ).val( $( "#sliderHourTo" ).slider( "value" ));
   	});
-  </script> 
-  
-<!-- http://www.primefaces.org/primeui/lightbox.html1		
-<script type="text/javascript">  
+ 
 
-    $(function() {  
-//	$(this.target).find('input').puigalleria();
-		$('#image_0').puilightbox();  
-		$('#image_1').puilightbox(); 
-		$('#image_2').puilightbox(); 
-		$('#image_3').puilightbox(); 
-		//$('#image_0').puigalleria("startSlideshow");  
-    });  
-</script> 
--->
+    </script>  
 </head>
 
 
@@ -203,72 +179,25 @@
 															<div class="line_hor1">
 																<strong><label id = "results_title"> </label></strong>
 															</div>
+                                                            <div id="title_0">
+                                                                    	<br/><strong><header style="color:#484848" id="header_img0"> </header></strong>
+                                                                        <h7 id="count_image_0"></h7>
+                                                             </div>
 															<div id="image_0">
-                                                                <div>
-                                                                	<strong><header style="color:#484848" id="header_img0"> </header></strong>
-                                                                    <h7 id="count_image_0"></h7>
-																</div>
-
-                                                                
-                                                                <div class="row">
-  																	<div class="col-xs-6 col-md-3">
-                                                                         <a id="aimg0-0" class="thumbnail"> <img id="img0-0" height="120" alt=""/></a>
-    	                                    	                         <a id="aimg0-1" class="thumbnail"> <img id="img0-1" height="120" alt=""/></a>
-        	                            	                             <a id="aimg0-2" class="thumbnail"> <img id="img0-2" height="120" alt=""/></a>
-            	                    	                                 <a id="aimg0-3" class="thumbnail"> <img id="img0-3" height="120" alt=""/></a>
-                	            	                                     <a id="aimg0-4" class="thumbnail"> <img id="img0-4" height="120" alt=""/></a>
-																	</div>
-                            	                                </div>
-                                                                                                                             <!--
-                                                                	<img id="img0-0" height="120" alt=""/>
-    	                                    	                    <img id="img0-1" height="120" alt=""/>
-        	                            	                        <img id="img0-2" height="120" alt=""/>
-            	                    	                            <img id="img0-3" height="120" alt=""/>
-                	            	                                <img id="img0-4" height="120" alt=""/>
-                                                                
-                                                                
-                                                                <div class="row">
-  																	<div class="col-xs-6 col-md-3">
-                                                                         <a href="#" class="thumbnail">
-	                                            	                        <img id="img0-0" height="120" alt=""/>
-    	                                    	                            <img id="img0-1" height="120" alt=""/>
-        	                            	                                <img id="img0-2" height="120" alt=""/>
-            	                    	                                    <img id="img0-3" height="120" alt=""/>
-                	            	                                        <img id="img0-4" height="120" alt=""/>
-                    	                                                </a>
-																	</div>
-                            	                                </div> -->  
-															</div>        
-                                                            <div id="image_1">
-                                                                <div>
-	                                                                <br/><strong><header style="color:#484848" id="header_img1"> </header></strong>
-                                                                    <h7 id="count_image_1"></h7>
-                                                                </div>
-                                                                <div class="row">
-  																	<div class="col-xs-6 col-md-3">
-                                                                	
-                                                                         <a id="aimg1-0" class="thumbnail"> <img id="img1-0" height="120" alt=""/></a>
-    	                                    	                         <a id="aimg1-1" class="thumbnail"> <img id="img1-1" height="120" alt=""/></a>
-        	                            	                             <a id="aimg1-2" class="thumbnail"> <img id="img1-2" height="120" alt=""/></a>
-            	                    	                                 <a id="aimg1-3" class="thumbnail"> <img id="img1-3" height="120" alt=""/></a>
-                	            	                                     <a id="aimg1-4" class="thumbnail"> <img id="img1-4" height="120" alt=""/></a>
-                                                                     </div>
-                                                                 </div>
-                                                      <!--
-                                                                    <img id="img1-0" height="120" alt=""/>
-                                                                    <img id="img1-1" height="120" alt=""/>
-                                                                    <img id="img1-2" height="120" alt=""/>
-                                                                    <img id="img1-3" height="120" alt=""/>
-                                                                    <img id="img1-4" height="120" alt=""/>
-														-->
-                                                        		
-															</div>   
-                                                            <div id="image_2">
-                                                                    <div>
+															</div>     
+                                                            <div id="title_1">  
+                                                             	<br/><strong><header style="color:#484848" id="header_img1"> </header></strong>
+                                                                <h7 id="count_image_1"></h7>
+                                                            </div> 
+                                                            <div id="image_1">                                                        		
+															</div> 
+                                                           	<div id id="title_2">  
                                                                     	<br/><strong><header style="color:#484848" id="header_img2"> </header></strong>
                                                                         <h7 id="count_image_2"></h7>
-                                                                    </div>
-                                                                  <div class="row">
+                                                            </div>  
+                                                            <div id="image_2">
+
+                                                              <!--    <div class="row">
   																	<div class="col-xs-6 col-md-3">
                                                                 	
                                                                          <a id="aimg2-0" class="thumbnail"> <img id="img2-0" height="120" alt=""/></a>
@@ -278,20 +207,21 @@
                 	            	                                     <a id="aimg2-4" class="thumbnail"> <img id="img2-4" height="120" alt=""/></a>
                                                                      </div>
                                                                  </div>                                                                  
-                                                                    <!--
+                                                                    
                                                                     <img id="img2-0" height="120" alt=""/>
                                                                     <img id="img2-1" height="120" alt=""/>
                                                                     <img id="img2-2" height="120" alt=""/>
                                                                     <img id="img2-3" height="120" alt=""/>
                                                                     <img id="img2-4" height="120" alt=""/>
                                                                     -->
-                                                            </div>                 
-                                                            <div id="image_3">
-                                                                    <div>
+                                                            </div> 
+                                                            <div id="title_3">  
                                                                         <br/><strong><header style="color:#484848" id="header_img3"> </header></strong>
                                                                         <h7 id="count_image_3"></h7>
-                                                                    </div>
-                                                                  <div class="row">
+                                                           </div>                
+                                                            <div id="image_3">
+
+                                                                <!--     <div class="row">
   																	<div class="col-xs-6 col-md-3">
                                                                 	
                                                                          <a id="aimg3-0" class="thumbnail"> <img id="img3-0" height="120" alt=""/></a>
@@ -301,20 +231,21 @@
                 	            	                                     <a id="aimg3-4" class="thumbnail"> <img id="img3-4" height="120" alt=""/></a>
                                                                      </div>
                                                                  </div>                                                                  
-                                                                    <!--                                                                    	
+                                                                                                                                     	
                                                                     <img id="img3-0" height="120" alt=""/>
                                                                     <img id="img3-1" height="120" alt=""/>
                                                                     <img id="img3-2" height="120" alt=""/>
                                                                     <img id="img3-3" height="120" alt=""/>
                                                                     <img id="img3-4" height="120" alt=""/>
                                                                     -->
-                                                            </div>        
-                                                            <div id="image_4">
-                                                                    <div>
+                                                            </div> 
+                                                            <div id="title_4">  
                                                                     	<br/><strong><header style="color:#484848" id="header_img4"> </header></strong>
                                                                         <h7 id="count_image_4"></h7>
-                                                                    </div>
-                                                                         <div class="row">
+                                                            </div>       
+                                                            <div id="image_4">
+                                                                    
+                                                                 <!--         <div class="row">
 		  																	<div class="col-xs-6 col-md-3">
                                                                 	
                                                                          <a id="aimg4-0" class="thumbnail"> <img id="img4-0" height="120" alt=""/></a>
@@ -324,20 +255,21 @@
                 	            	                                     <a id="aimg4-4" class="thumbnail"> <img id="img4-4" height="120" alt=""/></a>
                                                                      </div>
                                                                  </div>                                                                  
-                                                                    <!--
+                                                                   
                                                                     <img id="img4-0" height="120" alt=""/>
                                                                     <img id="img4-1" height="120" alt=""/>
                                                                     <img id="img4-2" height="120" alt=""/>
                                                                     <img id="img4-3" height="120" alt=""/>
                                                                     <img id="img4-4" height="120" alt=""/>
                                                                     -->
-                                                            </div>   
-                                                            <div id="image_5">
-                                                                    <div>
+                                                            </div> 
+                                                            <div id="title_5"> 
                                                                     	<br/><strong><header style="color:#484848" id="header_img5"> </header></strong>
                                                                         <h7 id="count_image_5"></h7>
-                                                                    </div>
-                                                                        <div class="row">
+                                                            </div>  
+                                                            <div id="image_5">
+                                                                    
+                                                                  <!--      <div class="row">
 		  																	<div class="col-xs-6 col-md-3">
                                                                 	
                                                                          <a id="aimg5-0" class="thumbnail"> <img id="img5-0" height="120" alt=""/></a>
@@ -347,20 +279,21 @@
                 	            	                                     <a id="aimg5-4" class="thumbnail"> <img id="img5-4" height="120" alt=""/></a>
                                                                      </div>
                                                                  </div>                                                                  
-                                                                    <!--
+                                                                    
                                                                     <img id="img5-0" height="120" alt=""/>
                                                                     <img id="img5-1" height="120" alt=""/>
                                                                     <img id="img5-2" height="120" alt=""/>
                                                                     <img id="img5-3" height="120" alt=""/>
                                                                     <img id="img5-4" height="120" alt=""/>
                                                                     -->
-                                                            </div>  
-                                                            <div id="image_6">
-                                                                    <div>
+                                                            </div>
+                                                            <div id="title_6">
                                                                     	<br/><strong><header style="color:#484848" id="header_img6"> </header></strong>
                                                                         <h7 id="count_image_6"></h7>
-                                                                    </div>
-                                                                  <div class="row">
+                                                            </div>  
+                                                            <div id="image_6">
+                                                                    
+                                                                <!--   <div class="row">
   																	<div class="col-xs-6 col-md-3">
                                                                 	
                                                                          <a id="aimg6-0" class="thumbnail"> <img id="img6-0" height="120" alt=""/></a>
@@ -370,20 +303,21 @@
                 	            	                                     <a id="aimg6-4" class="thumbnail"> <img id="img6-4" height="120" alt=""/></a>
                                                                      </div>
                                                                  </div>                                                                  
-                                                                    <!--                                                                    
+                                                                                                                                       
                                                                     <img id="img6-0" height="120" alt=""/>
                                                                     <img id="img6-1" height="120" alt=""/>
                                                                     <img id="img6-2" height="120" alt=""/>
                                                                     <img id="img6-3" height="120" alt=""/>
                                                                     <img id="img6-4" height="120" alt=""/>
                                                                     -->
-                                                            </div>        
-                                                            <div id="image_7">
-                                                                    <div>
+                                                            </div> 
+                                                            <div id="title_7">
                                                                     	<br/><strong><header style="color:#484848" id="header_img7"> </header></strong>
                                                                         <h7 id="count_image_7"></h7>
-                                                                    </div>
-                                                                   <div class="row">
+                                                            </div>       
+                                                            <div id="image_7">
+                                                                    
+                                                               <!--     <div class="row">
   																	<div class="col-xs-6 col-md-3">
                                                                 	
                                                                          <a id="aimg7-0" class="thumbnail"> <img id="img7-0" height="120" alt=""/></a>
@@ -393,59 +327,26 @@
                 	            	                                     <a id="aimg7-4" class="thumbnail"> <img id="img7-4" height="120" alt=""/></a>
                                                                      </div>
                                                                  </div>                                                                  
-                                                                    <!--                                                                   
+                                                                                                                                      
                                                                     <img id="img7-0" height="120" alt=""/>
                                                                     <img id="img7-1" height="120" alt=""/>
                                                                     <img id="img7-2" height="120" alt=""/>
                                                                     <img id="img7-3" height="120" alt=""/>
                                                                     <img id="img7-4" height="120" alt=""/>
                                                                     -->
-                                                            </div>   
-                                                            <div id="image_8">
-                                                                    <div>
+                                                            </div>
+                                                            <div id="title_8">
                                                                     	<br/><strong><header style="color:#484848" id="header_img8"> </header></strong>
                                                                         <h7 id="count_image_8"></h7>
-                                                                    </div>
-                                                                  <div class="row">
-  																	<div class="col-xs-6 col-md-3">
-                                                                	
-                                                                         <a id="aimg8-0" class="thumbnail"> <img id="img8-0" height="120" alt=""/></a>
-    	                                    	                         <a id="aimg8-1" class="thumbnail"> <img id="img8-1" height="120" alt=""/></a>
-        	                            	                             <a id="aimg8-2" class="thumbnail"> <img id="img8-2" height="120" alt=""/></a>
-            	                    	                                 <a id="aimg8-3" class="thumbnail"> <img id="img8-3" height="120" alt=""/></a>
-                	            	                                     <a id="aimg8-4" class="thumbnail"> <img id="img8-4" height="120" alt=""/></a>
-                                                                     </div>
-                                                                 </div>                                                                  
-                                                                    <!--                                                                    
-                                                                    <img id="img8-0" height="120" alt=""/>
-                                                                    <img id="img8-1" height="120" alt=""/>
-                                                                    <img id="img8-2" height="120" alt=""/>
-                                                                    <img id="img8-3" height="120" alt=""/>
-                                                                    <img id="img8-4" height="120" alt=""/>
-                                                                    -->
+                                                            </div>   
+                                                            <div id="image_8">
+                             
                                                             </div> 
-                                                            <div id="image_9">
-                                                                    <div>
+                                                             <div id="title_9">
                                                                     	<br/><strong><header style="color:#484848" id="header_img9"> </header></strong>
                                                                         <h7 id="count_image_9"></h7>
-                                                                    </div>
-                                                                                                                                      <div class="row">
-  																	<div class="col-xs-6 col-md-3">
-                                                                	
-                                                                         <a id="aimg9-0" class="thumbnail"> <img id="img9-0" height="120" alt=""/></a>
-    	                                    	                         <a id="aimg9-1" class="thumbnail"> <img id="img9-1" height="120" alt=""/></a>
-        	                            	                             <a id="aimg9-2" class="thumbnail"> <img id="img9-2" height="120" alt=""/></a>
-            	                    	                                 <a id="aimg9-3" class="thumbnail"> <img id="img9-3" height="120" alt=""/></a>
-                	            	                                     <a id="aimg9-4" class="thumbnail"> <img id="img9-4" height="120" alt=""/></a>
-                                                                     </div>
-                                                                 </div>                                                                  
-                                                                    <!--
-                                                                    <img id="img9-0" height="120" alt=""/>
-                                                                    <img id="img9-1" height="120" alt=""/>
-                                                                    <img id="img9-2" height="120" alt=""/>
-                                                                    <img id="img9-3" height="120" alt=""/>
-                                                                    <img id="img9-4" height="120" alt=""/>
-                                                                    -->
+                                                             </div>
+                                                            <div id="image_9">
                                                             </div> 
 														</div>	
 													</div>

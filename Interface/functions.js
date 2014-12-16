@@ -21,7 +21,7 @@ function buscar() {
 		//para teste
 		//document.getElementById("texto").innerHTML = this.to;
 		
-			
+		$("#results_section").load(location.href + " #results_section");	
 		//tratar as datas nulas de from e to 	
 		
 	//}
@@ -88,16 +88,11 @@ function buscar() {
 }
 
 function jsonCallback(data){
-	//var data = '{"status": "ok", "data": [{"imgs": ["http://pbs.twimg.com/media/B39Oy1_CIAA5pux.jpg", "http://pbs.twimg.com/media/B39O_mJCQAAp-L9.jpg"], "absolute": 296, "id": "547f8687c4e22521aba0afa5", "normalized": "1.000"},{"imgs": ["http://pbs.twimg.com/media/B39NYNyCEAApxu8.jpg", "http://pbs.twimg.com/media/B39Nqv3CAAATQ3r.jpg"], "absolute": 235, "id": "547f8690c4e22521aba0afaa", "normalized": "0.794"},{"imgs": ["http://pbs.twimg.com/media/B0XvfPMCUAAVNyv.jpg"], "absolute": 171, "id": "547f8807c4e22521aba0b0b7", "normalized": "0.578"},{"imgs": ["http://pbs.twimg.com/media/B39oUINCMAEqcfH.jpg", "http://pbs.twimg.com/media/B39oUHgCAAAoVgx.jpg", "http://pbs.twimg.com/media/B39oUICCYAApRXk.jpg"], "absolute": 159, "id": "547f89aec4e22521aba0b20d", "normalized": "0.537"},{"imgs": ["http://pbs.twimg.com/media/B39Ll4LCYAAPwwR.jpg"], "absolute": 149, "id": "547f8692c4e22521aba0afad", "normalized": "0.503"},{"imgs": ["http://pbs.twimg.com/media/B39KY4rCUAEk8J0.jpg"], "absolute": 148, "id": "547f8685c4e22521aba0afa3", "normalized": "0.500"},{"imgs": ["http://pbs.twimg.com/media/B2wL0KFCMAAcb1Q.png"], "absolute": 145, "id": "547f870dc4e22521aba0b00b", "normalized": "0.490"},{"imgs": ["http://pbs.twimg.com/media/B39MQMCCYAEii14.jpg"], "absolute": 145, "id": "547f8688c4e22521aba0afa6", "normalized": "0.490"},{"imgs": ["http://pbs.twimg.com/media/B39MbFKCcAAlszc.png"], "absolute": 138, "id": "547f86c1c4e22521aba0afcf", "normalized": "0.466"},{"imgs": ["http://pbs.twimg.com/media/B39NNLRCQAAgrnv.png"], "absolute": 136, "id": "547f8704c4e22521aba0b004", "normalized": "0.459"}], "query_time_us": 140671}';
 	//obj = JSON.parse(data);
 	obj = data;
-	//document.getElementById("texto").innerHTML = data;
-	//teste pra ver se entra nesta funcao qdo faco o get pro servidor
-	//document.getElementById("texto").innerHTML = data;
-	
+
 	var image
 	var count
-	
 
 	$(document.getElementById("results_section")).show();
 	//mostra as imagens, caso retorne alguma ou retorna msg de erro, caso o servidor de erro
@@ -105,33 +100,76 @@ function jsonCallback(data){
 		//mostra resultado
 		document.getElementById("results_title").innerHTML = "Resultados:";
 		for(i=0;i<10;i++){
-			count = "count_image_" + i
-			header = "header_img"+i
-			document.getElementById(count).innerHTML = "A seguinte imagem apareceu " + obj.data[i].absolute + " vezes. Valor normalizado: " + obj.data[i].normalized;
-			document.getElementById(header).innerHTML = (i+1)+"ª posição";
-			//para a imagem i, vejo o numero de imagens que ela tem. 0<j<n.o de url's
-			for(j=0;j<5;j++){				
-					image = "img" + i + "-" + j;
-					aimage = "a"+image;
-					if(j<obj.data[i].imgs.length){
-						document.getElementById(image).src = obj.data[i].imgs[j];
-						document.getElementById(aimage).href = obj.data[i].imgs[j];
-					} else {
-						document.getElementById(image).src = "";
-					}
-					
-			}
+			//count = "count_image_" + i
+			//header = "header_img"+i
+			count = "A imagem acima apareceu " + obj.data[i].absolute + " vezes. Valor normalizado: " + obj.data[i].normalized;
+			header = (i+1)+"ª posição";
+			//document.getElementById(count).innerHTML = "A seguinte imagem apareceu " + obj.data[i].absolute + " vezes. Valor normalizado: " + obj.data[i].normalized;
+			//document.getElementById(header).innerHTML = (i+1)+"ª posição";
+
 			
-			//var img = "#image_"+i;
-			//$(img).puigalleria("startSlideshow"); 
-			/*
-			for(j=0;j<obj.data[i].imgs.length & j<5;j++){				
-					image = "img" + i + "-" + j;
-					document.getElementById(image).src = obj.data[i].imgs[j];
+			/**********Transicao - GALLERIA
+			ulimage = "ulimage_"+i;
+			image = "#image_"+i;
+			$(image).empty();
+			//document.getElementById(ulimage).innerHTML = "";
+			
+			//apaga as imagens antigas
+			//$("#"+ulimage).empty();
+			document.getElementById("image_"+i).insertAdjacentHTML("afterBegin", "<ul id='"+ulimage+"'> </ul>");
+			
+			for(j=0;j<10;j++){				
+
+					if(j<obj.data[i].imgs.length){
+						
+						document.getElementById(ulimage).insertAdjacentHTML("afterBegin", "<li> <img src='"+obj.data[i].imgs[j]+"' alt='"+count+"' title='"+header+"'/></li>");
+						//document.write(obj.data[i].imgs[j]);
+					} 	
+					 
+         	}
+			$( document ).ready(function() {
+    			$(image).puigalleria({ panelHeight: 400}).startSlideshow;
+  			});
+			  
+			
+			GALLERIA termina aqui********/
+			
+			/******Transicao - LIGHTBOX*/
+			image = "#image_"+i;
+						
+			//apaga as imagens antigas
+			
+			
+			document.getElementById("count_image_" + i).innerHTML = count;
+			document.getElementById("header_img"+i).innerHTML = header;
+
+			
+			
+			//if(document.getElementById("image_"+i).firstElementChild != null){
+				$(image).empty();
+			//}
+			console.log(document.getElementById("image_"+i));
+			
+			for(j=0;j<5;j++){				
+
+					if(j<obj.data[i].imgs.length){
+						
+						
+							document.getElementById("image_"+i).insertAdjacentHTML("afterBegin", "<a href='"+
+							obj.data[i].imgs[j]+"'> <img src='"+obj.data[i].imgs[j]+"' alt='"+count+"' title='"+header+"'  height='120'/></a>");
 					
-			}*/
+					} 	
+					 
+         	}
+			
+			$(image).puilightbox(); 
+
+			/*LIGHTBOX termina aqui*******/			
+			
 		}
 		document.getElementById("texto").innerHTML = "";
+		
+
 	}
 	else {
 		//mensagem de erro
@@ -145,7 +183,7 @@ function jsonCallback(data){
 
 
 function datepicker() {
-    ( "#datepicker" ).datepicker();
+    $( "#datepicker" ).datepicker();
 }
 
 
