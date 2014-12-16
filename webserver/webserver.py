@@ -39,7 +39,7 @@ if __name__ == '__main__':
                 'data': 'invalid input `date` and `to`',
             })
 
-        conn = pymongo.Connection('localhost', 27017)
+        conn = pymongo.Connection('172.31.26.27', 27017)
         matches_collection = conn['ia896']['twitter_matches']
 
         start_t = datetime.now()
@@ -79,7 +79,7 @@ if __name__ == '__main__':
 
     @app.route('/non-identical-matches', methods = ['GET'])
     def non_identical():
-        conn = pymongo.Connection('localhost', 27017)
+        conn = pymongo.Connection('172.31.26.27', 27017)
         matches_collection = conn['ia896']['twitter_matches']
         images_collection = conn['ia896']['twitter_images']
 
